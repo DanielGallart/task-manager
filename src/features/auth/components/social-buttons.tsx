@@ -19,14 +19,19 @@ export function SocialButtons() {
     setPending(provider);
     setError(null);
     // Si va bien, el navegador sale hacia el proveedor y no volvemos aquí.
-    const { error } = await authClient.signIn.social({
-      provider,
-      callbackURL: "/dashboard",
-    });
-    if (error) {
-      setError("No se pudo iniciar sesión con ese proveedor");
-      setPending(null);
+    try {
+      const { error } = await authClient.signIn.social({
+        provider,
+        callbackURL: "/dashboard",
+      });
+      if (!error) return;
+      console.error("[auth] signIn.social", error);
+    } catch (err) {
+      // Errores de red u otros que el cliente lanza en vez de devolver.
+      console.error("[auth] signIn.social", err);
     }
+    setError("No se pudo iniciar sesión con ese proveedor");
+    setPending(null);
   }
 
   return (
