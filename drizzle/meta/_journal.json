@@ -15,6 +15,20 @@
       "when": 1790245053450,
       "tag": "0001_youthful_dust",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791822481094,
+      "tag": "0002_regular_reptil",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791823319213,
+      "tag": "0003_panoramic_black_knight",
+      "breakpoints": true
     }
   ]
 }

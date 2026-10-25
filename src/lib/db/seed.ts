@@ -89,15 +89,17 @@ async function seed() {
   // representativo con el que probar filtros, drag & drop, etc.
   await db.insert(tasks).values([
     {
+      organizationId: org.id,
       projectId: project.id,
       statusId: todo.id,
-      title: "Configurar Auth.js",
+      title: "Configurar Better Auth",
       description: "Añadir login con email/password y OAuth",
       priority: "high",
       assigneeId: alice.id,
       reporterId: alice.id,
     },
     {
+      organizationId: org.id,
       projectId: project.id,
       statusId: todo.id,
       title: "Diseñar el tablero kanban",
@@ -106,6 +108,7 @@ async function seed() {
       reporterId: alice.id,
     },
     {
+      organizationId: org.id,
       projectId: project.id,
       statusId: inProgress.id,
       title: "Modelo de datos con Drizzle",
@@ -115,6 +118,7 @@ async function seed() {
       reporterId: alice.id,
     },
     {
+      organizationId: org.id,
       projectId: project.id,
       statusId: inProgress.id,
       title: "Componente de tarjeta de tarea",
@@ -123,6 +127,7 @@ async function seed() {
       reporterId: bob.id,
     },
     {
+      organizationId: org.id,
       projectId: project.id,
       statusId: done.id,
       title: "Setup inicial de Next.js",
@@ -131,6 +136,7 @@ async function seed() {
       reporterId: bob.id,
     },
     {
+      organizationId: org.id,
       projectId: project.id,
       statusId: done.id,
       title: "Conexión a Postgres",
