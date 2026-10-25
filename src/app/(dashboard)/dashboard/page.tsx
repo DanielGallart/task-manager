@@ -1,24 +1,12 @@
-import type { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import { signOutAction } from "@/features/auth/actions";
+import { redirect } from "next/navigation";
 import { requireSession } from "@/features/auth/session";
+import { getUserOrganizations } from "@/features/organizations/queries";
 
-export const metadata: Metadata = { title: "Dashboard" };
-
-// Provisional: sirve para probar el flujo de auth. Se reemplaza en la fase 4.
+// Punto de entrada tras login/registro/OAuth: lleva a la primera organización
+// del usuario, o al onboarding si aún no pertenece a ninguna.
 export default async function DashboardPage() {
   const { user } = await requireSession();
+  const [firstOrg] = await getUserOrganizations(user.id);
 
-  return (
-    <main className="flex flex-1 flex-col items-center justify-center gap-4 p-4">
-      <p>
-        Sesión iniciada como <strong>{user.name}</strong> ({user.email})
-      </p>
-      <form action={signOutAction}>
-        <Button type="submit" variant="outline">
-          Cerrar sesión
-        </Button>
-      </form>
-    </main>
-  );
+  redirect(firstOrg ? `/orgs/${firstOrg.slug}` : "/onboarding");
 }
